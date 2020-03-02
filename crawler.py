@@ -1,3 +1,11 @@
+from urllib.request import urlopen
+from bs4 import BeautifulSoup
+from github import Github, Issue
+import datetime
+from pytz import timezone
+import os
+from dateutil.parser import parse
+
 sites = [ 
           'https://smartstore.naver.com/kumaelectron/products/4813999869'
          ,'https://smartstore.naver.com/kumaelectron/products/4754238400'
