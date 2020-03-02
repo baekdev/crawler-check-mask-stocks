@@ -41,7 +41,7 @@ for site in sites:
 
         if '<span class="mask2">' in str(buy_span):
             oos_status = '[품절]'
-            oos_list += '<a href="%s" target="_blank">%s %s %s</a><br/>'%(site, image, oos_status, product_title)
+            oos_list += '<a href="%s" target="_blank">%s %s</a><br/>'%(site, oos_status, product_title)
             print(oos_status, product_title)
         else :
             oos_status = '[판매중]'
