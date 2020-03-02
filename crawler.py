@@ -12,7 +12,17 @@ sites = [ 'https://smartstore.naver.com/kumaelectron/products/4813999869'
          ,'https://smartstore.naver.com/kumaelectron/products/4754248104'
          ,'https://smartstore.naver.com/aer-shop/products/4722827602'
          ,'https://smartstore.naver.com/korea-mask/products/4825762296'
+         ,'https://smartstore.naver.com/mfbshop/products/4072573492'
+         ,'https://smartstore.naver.com/mfbshop/products/4735164530'
+         ,'https://smartstore.naver.com/mfbshop/products/4735160554'
+         ,'https://smartstore.naver.com/mfbshop/products/4680268551'
+         ,'https://smartstore.naver.com/mfbshop/products/4072435942'
+         ,'https://smartstore.naver.com/mfbshop/products/4114661363'
+         ,'https://smartstore.naver.com/aer-shop/products/4722827602'
+         ,'https://smartstore.naver.com/etiqa/products/4817982860'
+         ,'https://smartstore.naver.com/gonggami/products/4705579501'
         ]
+
 availe_list = ''
 oos_list = ''
 
@@ -49,7 +59,7 @@ issue_body = availe_list + '---------------------------------<br/>' + oos_list
 GITHUB_TOKEN = os.environ['GITHUB_TOKEN']
 REPO_NAME = "crawler-check-mask-stocks"
 repo = Github(GITHUB_TOKEN).get_user().get_repo(REPO_NAME)
-if issue_body != '' and '판매중' in issue_body and REPO_NAME == repo.name:
+if issue_body != '' and REPO_NAME == repo.name:
     res = repo.create_issue(title=issue_title, body=issue_body)
     print(res)
 else:
