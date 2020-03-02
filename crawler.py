@@ -1,15 +1,9 @@
-from urllib.request import urlopen
-from bs4 import BeautifulSoup
-from github import Github, Issue
-import datetime
-from pytz import timezone
-import os
-from dateutil.parser import parse
-
-sites = [ 'https://smartstore.naver.com/kumaelectron/products/4813999869'
+sites = [ 
+          'https://smartstore.naver.com/kumaelectron/products/4813999869'
          ,'https://smartstore.naver.com/kumaelectron/products/4754238400'
          ,'https://smartstore.naver.com/kumaelectron/products/4754246120'
          ,'https://smartstore.naver.com/kumaelectron/products/4754248104'
+         ,'https://smartstore.naver.com/aer-shop/products/4722827602'
          ,'https://smartstore.naver.com/aer-shop/products/4722827602'
          ,'https://smartstore.naver.com/korea-mask/products/4825762296'
          ,'https://smartstore.naver.com/mfbshop/products/4072573492'
@@ -28,25 +22,22 @@ oos_list = ''
 for site in sites:
     res = urlopen(site)
     soup = BeautifulSoup(res, 'html.parser')
-    buy_span = soup.select('#wrap > div > div.prd_detail_basic > div.info > form > fieldset > div > div.prd_type3 > div.btn_order.v2 > span.buy')
+    buy_span = soup.select('div.prd_detail_basic div.info form fieldset div.prd_type3 div.btn_order span.buy')
+    product_title = soup.select('div div.prd_detail_basic div.info form fieldset div._copyable dl dt strong')
     
-    product_title = soup.select('#wrap > div > div.prd_detail_basic > div.info > form > fieldset > div._copyable > dl > dt > strong')
-    if product_title:
+    if len(product_title) > 0 :
         product_title = str(product_title[0]).replace('<strong>','').replace('</strong>','')
-
-        image = soup.select('#wrap > div > div.prd_detail_basic > div._image.view > div.bimg > div.img_va > img')
-        image = image[0].attrs['src']
-        image = '<img src="%s" style="width:100px;"/><br/>'%(image)
-
         if '<span class="mask2">' in str(buy_span):
             oos_status = '[품절]'
             oos_list += '<a href="%s" target="_blank">%s %s</a><br/>'%(site, oos_status, product_title)
             print(oos_status, product_title)
-        else :
+        elif '_productPreLaunch' in str(buy_span):
             oos_status = '[판매중]'
+            image = soup.select('div div.prd_detail_basic div._image.view div.bimg div.img_va img')
+            image = image[0].attrs['src']
+            image = '<img src="%s" style="width:100px;"/><br/>'%(image)
             availe_list += '<a href="%s" target="_blank">%s %s</a><br/>'%(site, oos_status, product_title)
             print(oos_status, product_title)
-
 
 KST = timezone('Asia/Seoul')
 date = datetime.datetime.now(KST)
