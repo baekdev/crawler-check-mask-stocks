@@ -2,7 +2,7 @@ name: 'crawler-check-mask-stocks'
 
 on:
   schedule:
-    - cron: '*/5 * * * *'
+    - cron: '*/5 0-11 * * *'
 
 jobs:
   run:
