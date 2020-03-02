@@ -18,7 +18,6 @@ sites = [ 'https://smartstore.naver.com/kumaelectron/products/4813999869'
          ,'https://smartstore.naver.com/mfbshop/products/4680268551'
          ,'https://smartstore.naver.com/mfbshop/products/4072435942'
          ,'https://smartstore.naver.com/mfbshop/products/4114661363'
-         ,'https://smartstore.naver.com/aer-shop/products/4722827602'
          ,'https://smartstore.naver.com/etiqa/products/4817982860'
          ,'https://smartstore.naver.com/gonggami/products/4705579501'
         ]
