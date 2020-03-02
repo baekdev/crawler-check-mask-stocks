@@ -59,7 +59,7 @@ issue_body = availe_list + '---------------------------------<br/>' + oos_list
 GITHUB_TOKEN = os.environ['GITHUB_TOKEN']
 REPO_NAME = "crawler-check-mask-stocks"
 repo = Github(GITHUB_TOKEN).get_user().get_repo(REPO_NAME)
-if issue_body != '' and REPO_NAME == repo.name:
+if issue_body != '' and '판매중' in issue_body and REPO_NAME == repo.name:
     res = repo.create_issue(title=issue_title, body=issue_body)
     print(res)
 else:
